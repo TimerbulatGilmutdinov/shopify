@@ -11,14 +11,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "sellers")
-public class Seller {
+@Table(name = "products")
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
-    private String name;
+    @Column(unique = true)
+    private Integer code;
+    @Column(nullable = false)
+    private Double price;
     @Column
     private Double rating;
-
+    @ManyToOne
+    @JoinColumn(name = "seller_id",nullable = false)
+    private Seller seller;
 }
