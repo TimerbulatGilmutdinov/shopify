@@ -1,4 +1,4 @@
-package ru.shopify.models;
+package ru.shopify.models.products;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,18 +11,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "products")
-public class Product {
+@Table
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class ProductDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    protected Integer id;
     @Column(unique = true)
-    private Integer code;
+    protected Integer code;
     @Column(nullable = false)
-    private Double price;
+    protected Double price;
     @Column
-    private Double rating;
-    @ManyToOne
-    @JoinColumn(name = "seller_id",nullable = false)
-    private Seller seller;
+    protected Double rating;
 }

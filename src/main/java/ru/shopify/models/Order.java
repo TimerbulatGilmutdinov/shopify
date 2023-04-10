@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.shopify.models.products.ProductDetails;
 
 import java.util.List;
 
@@ -30,5 +31,5 @@ public class Order {
             indexes = { @Index(columnList = "product_index") },
             joinColumns = @JoinColumn(name = "order_id"))
     @Column(name = "product")
-    private List<Product> products;
+    private List<ProductDetails> products;
 }
