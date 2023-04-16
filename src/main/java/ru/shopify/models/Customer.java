@@ -23,11 +23,7 @@ public class Customer extends Account{
     @Column(nullable = false)
     private String surname;
     @Column(nullable = false, unique = true)
-    private String email;
-    @Column(nullable = false, unique = true)
     private String phoneNumber;
-    @Column(nullable = false)
-    private String passwordHash;
     @Column(nullable = false)
     private Date birthdate;
     @Column(nullable = false)

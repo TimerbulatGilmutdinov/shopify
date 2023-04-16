@@ -4,9 +4,11 @@ package ru.shopify.models;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Account {
     public enum State {
-        ACTIVE, BANNED
+        ACTIVE, BANNED, CONFIRMED, NOT_CONFIRMED
     }
 
     public enum Role {
@@ -24,8 +26,20 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false, unique = true)
+    private String email;
+    @Column(nullable = false)
+    private String passwordHash;
     @Enumerated(EnumType.STRING)
     private Role role;
     @Enumerated(EnumType.STRING)
     private State state;
+
+    public boolean isConfirmed() {
+        return this.state==State.CONFIRMED;
+    }
+
+    public boolean isBanned() {
+        return this.state==State.BANNED;
+    }
 }
