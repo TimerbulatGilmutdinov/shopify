@@ -1,25 +1,33 @@
 package ru.shopify.security.details;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.shopify.models.Account;
 
 import java.util.Collection;
+import java.util.Collections;
 
+@RequiredArgsConstructor
 public class UserDetailsImpl implements UserDetails {
+    private final Account account;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        String roleAuthority = account.getRole().name();
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(roleAuthority);
+        return Collections.singleton(authority);
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return account.getPasswordHash();
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return account.getEmail();
     }
 
     @Override
@@ -29,7 +37,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return account.isConfirmed();
     }
 
     @Override
@@ -39,6 +47,6 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return account.isConfirmed();
     }
 }
