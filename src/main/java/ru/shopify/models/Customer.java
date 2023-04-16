@@ -1,27 +1,23 @@
 package ru.shopify.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "customers")
-public class Customer {
+public class Customer extends Account{
     public enum Gender {
         MALE,
         FEMALE
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
