@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "books")
-public class Books extends ProductDetails {
+public class Book extends ProductDetails {
     public enum BookType{
         ARTISTIC,
         NON_FICTION,
