@@ -5,11 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.shopify.models.Seller;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
 @Table
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -23,4 +23,7 @@ public abstract class ProductDetails {
     protected Double price;
     @Column
     protected Double rating;
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
+    protected Seller seller;
 }

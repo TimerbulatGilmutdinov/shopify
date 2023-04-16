@@ -37,5 +37,4 @@ public class Customer {
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
-
 }

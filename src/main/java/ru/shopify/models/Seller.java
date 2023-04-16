@@ -20,5 +20,4 @@ public class Seller {
     private String name;
     @Column
     private Double rating;
-
 }
