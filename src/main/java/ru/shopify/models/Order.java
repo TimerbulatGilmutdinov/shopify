@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.shopify.models.products.ProductDetails;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -27,9 +28,8 @@ public class Order {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
     @ElementCollection
-    @CollectionTable(name="carts",
-            indexes = { @Index(columnList = "product_index") },
+    @CollectionTable(name="customer_carts",
             joinColumns = @JoinColumn(name = "order_id"))
     @Column(name = "product")
-    private List<ProductDetails> products;
+    private List<ProductDetails> products = new ArrayList<>();
 }
