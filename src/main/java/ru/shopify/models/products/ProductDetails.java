@@ -26,4 +26,5 @@ public abstract class ProductDetails {
     @ManyToOne
     @JoinColumn(name = "seller_id")
     protected Seller seller;
+    protected boolean isAvailable;
 }
